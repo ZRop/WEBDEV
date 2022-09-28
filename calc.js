@@ -24,8 +24,44 @@ document.querySelector('.buttons').onclick = (event)=>{
     out.textContent = '';
     const key = event.target.textContent;
     
-    if(digit.incluses(key)){
+    if(digit.includes(key)){
+        if(b === '' && sign ===''){
         a+=key;
-        console.log(a,b,sign);
+        console.table(a,b,sign);
+        out.textContent = a;
+        }else if(a !== '' && b !=='' && finish){
+
+        }else{
+            b+=key;
+            out.textContent = b;
+        }
+        console.table(a,sign,b);
+    }
+
+    if(action.includes(key)){
+        sign = key;
+        out.textContent = sign;
+        console.table(a,sign,b);
+        return;
+    } 
+
+    if(key === '='){
+        switch(sign){
+            case "+":
+                a = (+a) + (+b);
+                break;
+            case "-":
+                a = a - b;
+                break;
+            case "X":
+                a = a * b;
+                break;
+            case "/":
+                a = a / b;
+                break;    
+        }
+        finish = true;
+        out.textContent = a;
+        console.table(a,sign,b);
     }
 }
